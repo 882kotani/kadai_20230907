@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      main {
+        width: 100%;
+        height: 100vh;
+        display: flex;
+        .cms {
+          width: 70%;
+          height: 100%;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          /* background-color: yellow; */
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header></header>
+    <main>
+      <div class="cms">
+        <h1>デモCMS</h1>
+        <form action="" method="put">
+          <div class="radio-wrap">
+            <input type="radio" name="test" value="テスト1" />テスト1
+            <input type="radio" name="test" value="テスト2" />テスト2
+            <input type="radio" name="test" value="テスト3" />テスト3
+          </div>
+
+          <input type="radio" name="true" value="true" /> 表示
+          <input type="radio" name="false" value="false" /> 非表示
+          <br />
+          <input type="text" name="name" />
+          <input type="submit" value="セット" />
+        </form>
+      </div>
+    </main>
+    <footer></footer>
+  </body>
+</html>
