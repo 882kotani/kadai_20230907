@@ -25,21 +25,65 @@
     <main>
       <div class="cms">
         <h1>デモCMS</h1>
+        <!-- <form action="" method="put"> -->
+
         <form action="" method="put">
           <div class="radio-wrap">
-            <input type="radio" name="test" value="テスト1" />テスト1
-            <input type="radio" name="test" value="テスト2" />テスト2
-            <input type="radio" name="test" value="テスト3" />テスト3
+            <input type="radio" name="show" value="true" />表示
+            <input type="radio" name="show" value="false" />非表示
           </div>
-
-          <input type="radio" name="true" value="true" /> 表示
-          <input type="radio" name="false" value="false" /> 非表示
-          <br />
-          <input type="text" name="name" />
-          <input type="submit" value="セット" />
+          <div class="id-wrap">
+            <input type="radio" name="id" value="1" />1
+            <input type="radio" name="id" value="2" />2
+          </div>
+          <input type="text" name="text" id="text2" /><br />
+          <button type="button" id="btn_set">セット</button>
         </form>
       </div>
     </main>
-    <footer></footer>
   </body>
+
+  <script>
+    // 送信するデータを準備
+
+    const btn = document.getElementById("btn_set");
+    btn.addEventListener("click", function () {
+      if (document.querySelector('input[name="show"]:checked').value == "true")
+        show_form = true;
+      if (document.querySelector('input[name="show"]:checked').value == "false")
+        show_form = false;
+
+      const text_form = document.getElementById("text2").value;
+      const id_form = document.querySelector('input[name="id"]:checked').value;
+
+      // console.log(show_form);
+      // console.log(text_form);
+
+      const send_json = {
+        is_show: show_form,
+        text: text_form,
+        id: id_form,
+      };
+
+      console.log(send_json);
+
+      const url = "http://localhost:3000/ad/" + id_form;
+      console.log(url);
+
+      // PUTリクエストを作成
+      fetch(url, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(send_json),
+      })
+        .then((response) => {
+          console.log("json送信完了");
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    });
+  </script>
 </html>
