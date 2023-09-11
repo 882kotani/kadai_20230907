@@ -25,16 +25,17 @@
     <main>
       <div class="cms">
         <h1>デモCMS</h1>
-        <!-- <form action="" method="put"> -->
 
-        <form action="" method="put">
+        <form method="put">
           <div class="radio-wrap">
-            <input type="radio" name="show" value="true" />表示
-            <input type="radio" name="show" value="false" />非表示
+            <label> <input type="radio" name="show" value="true" />表示 </label>
+            <label>
+              <input type="radio" name="show" value="false" />非表示</label
+            >
           </div>
           <div class="id-wrap">
-            <input type="radio" name="id" value="1" />1
-            <input type="radio" name="id" value="2" />2
+            <label> <input type="radio" name="id" value="1" />1 </label>
+            <label><input type="radio" name="id" value="2" />2</label>
           </div>
           <input type="text" name="text" id="text2" /><br />
           <button type="button" id="btn_set">セット</button>
@@ -44,8 +45,6 @@
   </body>
 
   <script>
-    // 送信するデータを準備
-
     const btn = document.getElementById("btn_set");
     btn.addEventListener("click", function () {
       if (document.querySelector('input[name="show"]:checked').value == "true")
@@ -59,6 +58,7 @@
       // console.log(show_form);
       // console.log(text_form);
 
+      //送るjsonのひな型を作成
       const send_json = {
         is_show: show_form,
         text: text_form,
@@ -70,20 +70,33 @@
       const url = "http://localhost:3000/ad/" + id_form;
       console.log(url);
 
-      // PUTリクエストを作成
-      fetch(url, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(send_json),
-      })
-        .then((response) => {
-          console.log("json送信完了");
-        })
-        .catch((error) => {
-          console.error(error);
+      //fetch-then ver
+      // fetch(url, {
+      //   method: "PUT",
+      //   headers: {
+      //     "Content-Type": "application/json",
+      //   },
+      //   body: JSON.stringify(send_json),
+      // })
+      //   .then((response) => {
+      //     console.log("json送信完了");
+      //   })
+      //   .catch((error) => {
+      //     console.error(error);
+      //   });
+
+      //async await ver
+      async function myfetch() {
+        const response = await fetch(url, {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(send_json),
         });
+        const data = await response.json();
+      }
+      myfetch();
     });
   </script>
 </html>
