@@ -8,14 +8,21 @@
       main {
         width: 100%;
         height: 100vh;
-        display: flex;
+        /* display: flex; */
+        /* background-color: yellow; */
         .cms {
-          width: 70%;
+          width: 100%;
           height: 100%;
+          display: flex;
           flex-direction: column;
           justify-content: center;
           align-items: center;
-          /* background-color: yellow; */
+          background-color: gray;
+          .form {
+            background-color: white;
+            padding: 30px;
+            border-radius: 20px;
+          }
         }
       }
     </style>
@@ -25,21 +32,24 @@
     <main>
       <div class="cms">
         <h1>デモCMS</h1>
-
-        <form method="put">
-          <div class="radio-wrap">
-            <label> <input type="radio" name="show" value="true" />表示 </label>
-            <label>
-              <input type="radio" name="show" value="false" />非表示</label
-            >
-          </div>
-          <div class="id-wrap">
-            <label> <input type="radio" name="id" value="1" />1 </label>
-            <label><input type="radio" name="id" value="2" />2</label>
-          </div>
-          <input type="text" name="text" id="text2" /><br />
-          <button type="button" id="btn_set">セット</button>
-        </form>
+        <div class="form">
+          <form method="put">
+            <div class="radio-wrap">
+              <label>
+                <input type="radio" name="show" value="true" />表示
+              </label>
+              <label>
+                <input type="radio" name="show" value="false" />非表示</label
+              >
+            </div>
+            <div class="id-wrap">
+              <label> <input type="radio" name="id" value="1" />1 </label>
+              <label><input type="radio" name="id" value="2" />2</label>
+            </div>
+            <input type="text" name="text" id="text2" /><br />
+            <button type="button" id="btn_set">セット</button>
+          </form>
+        </div>
       </div>
     </main>
   </body>
